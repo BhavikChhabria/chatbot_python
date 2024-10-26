@@ -1,4 +1,3 @@
-# Step 1: Import libraries
 import json
 import random
 import nltk
