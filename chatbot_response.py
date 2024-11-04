@@ -3,7 +3,7 @@ import random
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('wordnet')
 
 with open('intents.json', 'r') as file:
