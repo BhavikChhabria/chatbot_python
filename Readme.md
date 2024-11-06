@@ -34,7 +34,7 @@ This chatbot demonstrates a foundational approach to intent classification witho
 
 #### Python libraries such as json for data handling and random for response selection are fundamental to this project.
 
-![alt text](<Screenshot (155).png>)
+![alt text](<screenshots_folder/Screenshot (155).png>)
 
 Jupyter Notebook Lab provides the testing environment for the chatbot, facilitating real-time testing and debugging.
 The chatbot's primary function, chatbot_response, integrates both intent prediction and response generation.
@@ -42,23 +42,23 @@ Future expansions can include using machine learning or NLP libraries to enhance
 
 #### -> The objective of this project is to develop a simple, rule-based chatbot capable of recognizing user intent and generating relevant responses.
 
-![alt text](<Screenshot (154)-1.png>)
+![alt text](<screenshots_folder/Screenshot (154)-1.png>)
 
 #### -> The objective of this project is to develop a simple, rule-based chatbot capable of recognizing user intent and generating relevant responses.
 
-![alt text](<Screenshot (149)-1.png>)
+![alt text](<screenshots_folder/Screenshot (149)-1.png>)
 
-![alt text](<Screenshot (150)-1.png>)
-
-#### -> The objective of this project is to develop a simple, rule-based chatbot capable of recognizing user intent and generating relevant responses.
-
-![alt text](<Screenshot (151)-1.png>)
-
-![alt text](<Screenshot (152)-1.png>)
+![alt text](<screenshots_folder/Screenshot (150)-1.png>)
 
 #### -> The objective of this project is to develop a simple, rule-based chatbot capable of recognizing user intent and generating relevant responses.
 
-![alt text](<Screenshot (153)-1.png>)
+![alt text](<screenshots_folder/Screenshot (151)-1.png>)
+
+![alt text](<screenshots_folder/Screenshot (152)-1.png>)
+
+#### -> The objective of this project is to develop a simple, rule-based chatbot capable of recognizing user intent and generating relevant responses.
+
+![alt text](<screenshots_folder/Screenshot (153)-1.png>)
 
 #### -> The objective of this project is to develop a simple, rule-based chatbot capable of recognizing user intent and generating relevant responses. The chatbot's functionality is based on Natural Language Processing (NLP) techniques, particularly focused on intent classification.
 
@@ -66,232 +66,3 @@ Future expansions can include using machine learning or NLP libraries to enhance
 
 This project offers an understanding of how a rule-based chatbot can be developed using Python and JSON data structures. By expanding the intents.json file and modifying the classification algorithm, one can customize and scale the chatbot’s capabilities. This project provides a foundation for exploring more advanced AI-driven chatbots in future studies.
 
-### code and output
-
-```python
-import os
-```
-
-```python
-import json
-import random
-import nltk
-from nltk.stem import WordNetLemmatizer
-```
-
-```python
-with open('intents.json', 'r') as file:
-    data = json.load(file)
-```
-
-```python
-words = []
-classes = []
-documents = []
-```
-
-```python
-for intent in data['intents']:
-    for pattern in intent['patterns']:
-        # Tokenize each word in the sentence
-        word_list = nltk.word_tokenize(pattern)
-        words.extend(word_list)
-```
-
-```python
- documents.append((word_list, intent['tag']))
-```
-
-```python
- if intent['tag'] not in classes:
-            classes.append(intent['tag'])
-```
-
-```python
-words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ['?', '!']]
-words = sorted(list(set(words)))
-
-```
-
-```python
-classes = sorted(classes)
-```
-
-```python
-def clean_sentence(sentence):
-    sentence_words = nltk.word_tokenize(sentence)
-    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
-    return sentence_words
-```
-
-```python
-def predict_intent_tag(sentence):
-    for intent in data['intents']:
-        for pattern in intent['patterns']:
-            if pattern.lower() in sentence.lower():
-                return intent['tag']
-    return "unknown"
-```
-
-```python
-def get_response(tag):
-    for intent in data['intents']:
-        if intent['tag'] == tag:
-            return random.choice(intent['responses'])
-    return "I'm not sure how to respond to that."
-
-```
-
-```python
-def chatbot_response(sentence):
-    tag = predict_intent_tag(sentence)
-    return get_response(tag)
-```
-
-```python
-chatbot_response("Hello")
-```
-
-    'Good to see you again!'
-
-```python
-chatbot_response("Is anyone there?")
-```
-
-    'Hi there, how can I help?'
-
-```python
-chatbot_response("Is anyone there?")
-```
-
-    'Good to see you again!'
-
-```python
-chatbot_response("Is anyone there?")
-```
-
-    'Hi there, how can I help?'
-
-```python
-chatbot_response("Is anyone there?")
-```
-
-    'Hello!'
-
-```python
-chatbot_response("cya")
-```
-
-    'Sad to see you go :('
-
-```python
-chatbot_response("name")
-```
-
-    'I am your helper'
-
-```python
-chatbot_response("okay")
-```
-
-    'I am glad I helped you'
-
-```python
-chatbot_response("okay")
-```
-
-    'I am glad I helped you'
-
-```python
-chatbot_response("okay")
-```
-
-    'I am glad I helped you'
-
-```python
- chatbot_response("its ok")
-```
-
-    'Our university offers Information Technology, computer Engineering, Mechanical engineering,Chemical engineering, Civil engineering and extc Engineering.'
-
-```python
-chatbot_response("okk")
-```
-
-    'I am glad I helped you'
-
-```python
-chatbot_response("information about sports")
-```
-
-    'Our university encourages all-round development of students and hence provides sports facilities in the campus. For more details visit<a target="_blank" href=/"(LINK IF HAVE)">here</a>'
-
-```python
-chatbot_response( "fucker")
-```
-
-    'please use appropriate language'
-
-```python
-chatbot_response( "fucker")
-```
-
-    'Maintaining decency would be appreciated'
-
-```python
-chatbot_response("When is vacation")
-```
-
-    'Academic calender is given to you by your class-soordinators after you join your respective classes'
-
-```python
-chatbot_response("when will semester starts")
-```
-
-    'Here is the Academic Calendar  <a target="_blank" href="YOUR ACADEMIC CALENDER">website</a>'
-
-```python
-chatbot_response("You mother fucker")
-```
-
-    'please use appropriate language'
-
-```python
-chatbot_response("You mother fucker")
-```
-
-    'please use appropriate language'
-
-```python
-chatbot_response("(
-```
-
-    'Maintaining decency would be appreciated'
-
-```python
-chatbot_response("meaning of OP")
-```
-
-    "I'm not sure how to respond to that."
-
-```python
-chatbot_response("meaning of UNIVERSITY")
-```
-
-    'Our university offers Information Technology, computer Engineering, Mechanical engineering,Chemical engineering, Civil engineering and extc Engineering.'
-
-```python
-chatbot_response("what is 1 + 1")
-```
-
-    "I'm not sure how to respond to that."
-
-```python
-chatbot_response("what is the process of admission")
-```
-
-    'Application can also be submitted online through the Unversity\'s  <a target="_blank" href="LINK OF ADMISSION DOCUMENT">website</a>'
-
-```python
-
-```
